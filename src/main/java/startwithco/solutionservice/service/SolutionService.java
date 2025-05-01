@@ -30,9 +30,7 @@ public class SolutionService {
 
     @Transactional
     public PaymentResponseDto getTossPaymentParam(Long solutionSeq) {
-        SolutionEntity solutionEntity = repository.findWithLockBySolutionSeqForWaiting(solutionSeq)
-                .orElseThrow(() -> new NotFoundException(NotFoundErrorResult.SOLUTION_NOT_FOUND_EXCEPTION));
-
+        SolutionEntity solutionEntity = repository.findWithLockBySolutionSeqForWaiting(solutionSeq);
         solutionEntity.occupy();
         SolutionEntity result = repository.saveAndFlush(solutionEntity);
 
