@@ -9,14 +9,15 @@ import startwithco.solutionservice.exception.notFound.NotFoundErrorResult;
 import startwithco.solutionservice.exception.notFound.NotFoundException;
 import startwithco.solutionservice.exception.server.ServerErrorResult;
 import startwithco.solutionservice.exception.server.ServerException;
-import startwithco.solutionservice.kafka.event.producer.SolutionPaymentProducerEvent;
 import startwithco.solutionservice.domain.SolutionEntity;
 import startwithco.solutionservice.repository.SolutionRepository;
 import startwithco.solutionservice.service.mapper.SolutionServiceMapper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
-import static startwithco.solutionservice.kafka.topic.producer.ProducerTopic.SOLUTION_PAYMENT_TOPIC;
+import static startwithco.solutionservice.topic.producer.ProducerTopic.SOLUTION_PAYMENT_TOPIC;
 import static startwithco.solutionservice.service.dto.ResponseDto.*;
 
 @Service
@@ -36,14 +37,14 @@ public class SolutionService {
         SolutionEntity result = repository.saveAndFlush(solutionEntity);
 
         String orderId = UUID.randomUUID().toString();
-        SolutionPaymentProducerEvent event = new SolutionPaymentProducerEvent(
-                result.getAmount(),
-                orderId,
-                result.getSolutionName()
-        );
 
         try {
-            String json = objectMapper.writeValueAsString(event);
+            Map<String, Object> payload = new HashMap<>();
+            payload.put("amount", result.getAmount());
+            payload.put("orderId", orderId);
+            payload.put("orderName", result.getSolutionName());
+
+            String json = objectMapper.writeValueAsString(payload);
             kafkaTemplate.send(SOLUTION_PAYMENT_TOPIC, json);
         } catch (Exception e) {
             throw new ServerException(ServerErrorResult.INTERNAL_SERVER_EXCEPTION);
