@@ -1,18 +1,18 @@
 package startwithco.solutionservice.service.dto;
 
-import startwithco.solutionservice.domain.type.CLOUD;
-import startwithco.solutionservice.domain.type.FIELD;
+
+import startwithco.solutionservice.domain.SolutionEntity;
 
 public class ResponseDto {
     public record SolutionResponseDto(
             Long solutionSeq,
             Long companySeq,
-            FIELD field,
+            SolutionEntity.FIELD field,
             String solutionName,
             String detailImage,
             String description,
             Long amount,
-            CLOUD cloud,
+            SolutionEntity.CLOUD cloud,
             Long duration,
             Long sellCount
     ) {

@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import startwithco.solutionservice.domain.type.CLOUD;
-import startwithco.solutionservice.domain.type.FIELD;
 
 @Entity
 @Table(name = "SOLUTION")
@@ -52,6 +50,20 @@ public class SolutionEntity {
 
     @Column(name = "sell_count", nullable = false, columnDefinition = "bigint default 0")
     private Long sellCount;
+
+    public enum FIELD {
+        CRM,
+        ERP,
+        HRM,
+        BI
+    }
+
+    public enum CLOUD {
+        PaaS,
+        IaaS,
+        SaaS,
+        CaaS
+    }
 
     public void upSellCount() {
         this.sellCount = this.sellCount + 1;
