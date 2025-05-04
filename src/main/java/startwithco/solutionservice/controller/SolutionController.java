@@ -21,12 +21,16 @@ public class SolutionController {
     private final SolutionService solutionService;
 
     @GetMapping("/toss-payment-query")
-    public ResponseEntity<BaseResponse<PaymentResponseDto>> tossPaymentQuery(@RequestParam(name = "solutionSeq") Long solutionSeq) {
-        if (solutionSeq == null) {
+    public ResponseEntity<BaseResponse<PaymentResponseDto>> tossPaymentQuery(
+            @RequestParam(name = "solutionSeq") Long solutionSeq,
+            @RequestParam(name = "buyerSeq") Long buyerSeq,
+            @RequestParam(name = "sellerSeq") Long sellerSeq
+    ) {
+        if (solutionSeq == null || buyerSeq == null || sellerSeq == null || buyerSeq.equals(sellerSeq)) {
             throw new BadRequestException(BadRequestErrorResult.BAD_REQUEST_EXCEPTION);
         }
 
-        PaymentResponseDto response = solutionService.getTossPaymentParam(solutionSeq);
+        PaymentResponseDto response = solutionService.getTossPaymentParam(solutionSeq, buyerSeq, sellerSeq);
 
         return ResponseEntity.ok().body(BaseResponse.ofSuccess(HttpStatus.OK.value(), response));
     }
