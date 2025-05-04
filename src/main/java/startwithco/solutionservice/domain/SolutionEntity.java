@@ -9,7 +9,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import startwithco.solutionservice.domain.type.CLOUD;
 import startwithco.solutionservice.domain.type.FIELD;
-import startwithco.solutionservice.domain.type.STATUS;
 
 @Entity
 @Table(name = "SOLUTION")
@@ -51,15 +50,16 @@ public class SolutionEntity {
     @Column(name = "duration", nullable = false)
     private Long duration;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private STATUS status;
+    @Column(name = "sell_count", nullable = false, columnDefinition = "bigint default 0")
+    private Long sellCount;
 
-    public void occupy() {
-        if (this.status != STATUS.WAITING_OCCUPY) {
-            throw new IllegalStateException("이미 점유된 솔루션입니다.");
+    public void upSellCount() {
+        this.sellCount = this.sellCount + 1;
+    }
+
+    public void downSellCount() {
+        if (this.sellCount > 0) {
+            this.sellCount = this.sellCount - 1;
         }
-
-        this.status = STATUS.OCCUPIED;
     }
 }

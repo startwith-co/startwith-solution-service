@@ -13,6 +13,6 @@ import java.util.Optional;
 @Repository
 public interface SolutionJpaRepository extends JpaRepository<SolutionEntity, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("select s from SolutionEntity s where s.solutionSeq = :solutionSeq and s.status = 'WAITING_OCCUPY'")
+    @Query("select s from SolutionEntity s where s.solutionSeq = :solutionSeq")
     Optional<SolutionEntity> findWithLockBySolutionSeqForWaiting(@Param("solutionSeq") Long solutionSeq);
 }
