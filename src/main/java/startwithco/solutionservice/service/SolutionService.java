@@ -30,9 +30,9 @@ public class SolutionService {
     @KafkaListener(topics = TOSS_PAYMENT_APPROVAL_TOPIC, groupId = "group-01")
     public void tossPaymentApproval(String event) {
         /*
-        * TODO
-        *  테스트 필요
-        * */
+         * TODO
+         *  테스트 필요
+         * */
         SolutionEntity result = repository.findWithLockBySolutionSeqForWaiting(Long.parseLong(event));
 
         try {
@@ -40,9 +40,12 @@ public class SolutionService {
 
             repository.saveAndFlush(result);
         } catch (Exception e) {
-            result.downSellCount();
+            /*
+             * TODO
+             *  SellCount가 제대로 업데이트 되지 않으면 어떻게 처리?
+             *  이미 TossPayment는 승인이 났을 것으로 예상
+             */
 
-            repository.saveAndFlush(result);
             throw new ServerException(ServerErrorResult.INTERNAL_SERVER_EXCEPTION);
         }
     }
