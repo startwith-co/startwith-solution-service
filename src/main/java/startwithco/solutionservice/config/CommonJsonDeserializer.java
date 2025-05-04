@@ -1,4 +1,4 @@
-package startwithco.solutionservice.config.Json;
+package startwithco.solutionservice.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

@@ -2,13 +2,9 @@ package startwithco.solutionservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import startwithco.solutionservice.exception.notFound.NotFoundErrorResult;
-import startwithco.solutionservice.exception.notFound.NotFoundException;
 import startwithco.solutionservice.exception.server.ServerErrorResult;
 import startwithco.solutionservice.exception.server.ServerException;
 import startwithco.solutionservice.domain.SolutionEntity;
@@ -19,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static startwithco.solutionservice.topic.consumer.ConsumerTopic.SOLUTION_PAYMENT_ROLLBACK_TOPIC;
 import static startwithco.solutionservice.topic.producer.ProducerTopic.SOLUTION_PAYMENT_TOPIC;
 import static startwithco.solutionservice.service.dto.ResponseDto.*;
 
@@ -44,28 +39,11 @@ public class SolutionService {
             payload.put("orderName", result.getSolutionName());
             String json = objectMapper.writeValueAsString(payload);
 
-            result.upSellCount();
-            repository.saveAndFlush(result);
-
             kafkaTemplate.send(SOLUTION_PAYMENT_TOPIC, json);
         } catch (Exception e) {
             throw new ServerException(ServerErrorResult.INTERNAL_SERVER_EXCEPTION);
         }
 
         return mapper.toPaymentResponseDto(result.getAmount(), orderId, result.getSolutionName());
-    }
-
-    @Transactional
-    @KafkaListener(topics = SOLUTION_PAYMENT_ROLLBACK_TOPIC, groupId = "group-01")
-    public void getTossPaymentRollback(String event) {
-        try {
-            Long solutionSeq = Long.parseLong(event);
-
-            SolutionEntity result = repository.findWithLockBySolutionSeqForWaiting(solutionSeq);
-            result.downSellCount();
-            repository.saveAndFlush(result);
-        } catch (Exception e) {
-            throw new ServerException(ServerErrorResult.INTERNAL_SERVER_EXCEPTION);
-        }
     }
 }
