@@ -1,10 +1,20 @@
 package startwithco.solutionservice.service.dto;
 
+import startwithco.solutionservice.domain.type.CLOUD;
+import startwithco.solutionservice.domain.type.FIELD;
+
 public class ResponseDto {
-    public record PaymentResponseDto(
+    public record SolutionResponseDto(
+            Long solutionSeq,
+            Long companySeq,
+            FIELD field,
+            String solutionName,
+            String detailImage,
+            String description,
             Long amount,
-            String orderId,
-            String orderName
+            CLOUD cloud,
+            Long duration,
+            Long sellCount
     ) {
 
     }

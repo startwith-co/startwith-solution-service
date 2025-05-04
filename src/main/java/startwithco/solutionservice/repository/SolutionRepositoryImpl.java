@@ -23,4 +23,10 @@ public class SolutionRepositoryImpl implements SolutionRepository {
     public SolutionEntity saveAndFlush(SolutionEntity entity) {
         return repository.saveAndFlush(entity);
     }
+
+    @Override
+    public SolutionEntity findBySolutionSeq(Long solutionSeq) {
+        return repository.findBySolutionSeq(solutionSeq)
+                .orElseThrow(() -> new NotFoundException(NotFoundErrorResult.SOLUTION_NOT_FOUND_EXCEPTION));
+    }
 }

@@ -1,6 +1,7 @@
 package startwithco.solutionservice.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,20 +18,17 @@ import static startwithco.solutionservice.service.dto.ResponseDto.*;
 @RestController
 @RequestMapping("/api/solution-service")
 @RequiredArgsConstructor
+@Slf4j
 public class SolutionController {
     private final SolutionService solutionService;
 
     @GetMapping("/toss-payment-query")
-    public ResponseEntity<BaseResponse<PaymentResponseDto>> tossPaymentQuery(
-            @RequestParam(name = "solutionSeq") Long solutionSeq,
-            @RequestParam(name = "buyerSeq") Long buyerSeq,
-            @RequestParam(name = "sellerSeq") Long sellerSeq
-    ) {
-        if (solutionSeq == null || buyerSeq == null || sellerSeq == null || buyerSeq.equals(sellerSeq)) {
+    public ResponseEntity<BaseResponse<SolutionResponseDto>> getSolution(@RequestParam(name = "solutionSeq") Long solutionSeq) {
+        if (solutionSeq == null) {
             throw new BadRequestException(BadRequestErrorResult.BAD_REQUEST_EXCEPTION);
         }
 
-        PaymentResponseDto response = solutionService.getTossPaymentParam(solutionSeq, buyerSeq, sellerSeq);
+        SolutionResponseDto response = solutionService.getSolution(solutionSeq);
 
         return ResponseEntity.ok().body(BaseResponse.ofSuccess(HttpStatus.OK.value(), response));
     }

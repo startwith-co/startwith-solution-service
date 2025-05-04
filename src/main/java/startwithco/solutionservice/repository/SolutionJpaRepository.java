@@ -15,4 +15,7 @@ public interface SolutionJpaRepository extends JpaRepository<SolutionEntity, Lon
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select s from SolutionEntity s where s.solutionSeq = :solutionSeq")
     Optional<SolutionEntity> findWithLockBySolutionSeqForWaiting(@Param("solutionSeq") Long solutionSeq);
+
+    @Query("select s from SolutionEntity s where s.solutionSeq = :solutionSeq")
+    Optional<SolutionEntity> findBySolutionSeq(@Param("solutionSeq") Long solutionSeq);
 }
