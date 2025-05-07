@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 
 @Entity
 @Table(name = "SOLUTION_REVIEW_ENTITY")
@@ -21,6 +22,10 @@ public class SolutionReviewEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "solution_review_seq")
     private Long solutionReviewSeq;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "solution_seq")
+    private SolutionEntity solutionEntity;
 
     @Column(name = "consumer_seq", nullable = false)
     private Long consumerSeq;
