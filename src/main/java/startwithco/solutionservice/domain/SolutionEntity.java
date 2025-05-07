@@ -9,7 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "SOLUTION")
+@Table(name = "SOLUTION_ENTITY")
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
@@ -22,12 +22,8 @@ public class SolutionEntity {
     @Column(name = "solution_seq")
     private Long solutionSeq;
 
-    @Column(name = "company_seq", nullable = false)
-    private Long companySeq;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private FIELD field;
+    @Column(name = "vendor_seq", nullable = false)
+    private Long vendorSeq;
 
     @Column(name = "solution_name", nullable = false)
     private String solutionName;
@@ -50,13 +46,6 @@ public class SolutionEntity {
 
     @Column(name = "sell_count", nullable = false, columnDefinition = "bigint default 0")
     private Long sellCount;
-
-    public enum FIELD {
-        CRM,
-        ERP,
-        HRM,
-        BI
-    }
 
     public enum CLOUD {
         PaaS,

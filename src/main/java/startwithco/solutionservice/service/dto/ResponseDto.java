@@ -7,7 +7,6 @@ public class ResponseDto {
     public record SolutionResponseDto(
             Long solutionSeq,
             Long companySeq,
-            SolutionEntity.FIELD field,
             String solutionName,
             String detailImage,
             String description,
