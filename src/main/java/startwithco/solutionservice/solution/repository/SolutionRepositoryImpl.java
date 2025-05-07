@@ -1,12 +1,10 @@
-package startwithco.solutionservice.repository;
+package startwithco.solutionservice.solution.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 import startwithco.solutionservice.exception.notFound.NotFoundErrorResult;
 import startwithco.solutionservice.exception.notFound.NotFoundException;
-
-import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor

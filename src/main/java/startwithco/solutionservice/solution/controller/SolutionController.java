@@ -1,4 +1,4 @@
-package startwithco.solutionservice.controller;
+package startwithco.solutionservice.solution.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import startwithco.solutionservice.base.BaseResponse;
 import startwithco.solutionservice.exception.badRequest.BadRequestErrorResult;
 import startwithco.solutionservice.exception.badRequest.BadRequestException;
-import startwithco.solutionservice.service.SolutionService;
+import startwithco.solutionservice.solution.service.SolutionService;
 
-import static startwithco.solutionservice.service.dto.ResponseDto.*;
+import static startwithco.solutionservice.solution.service.dto.ResponseDto.*;
 
 @RestController
 @RequestMapping("/api/solution-service")

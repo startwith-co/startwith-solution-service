@@ -1,6 +1,6 @@
-package startwithco.solutionservice.repository;
+package startwithco.solutionservice.solution.repository;
 
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 
 public interface SolutionRepository {
     SolutionEntity findWithLockBySolutionSeqForWaiting(Long solutionSeq);

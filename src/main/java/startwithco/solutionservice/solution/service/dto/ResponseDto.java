@@ -1,7 +1,7 @@
-package startwithco.solutionservice.service.dto;
+package startwithco.solutionservice.solution.service.dto;
 
 
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 
 public class ResponseDto {
     public record SolutionResponseDto(

@@ -1,4 +1,4 @@
-package startwithco.solutionservice.service;
+package startwithco.solutionservice.solution.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import startwithco.solutionservice.exception.server.ServerErrorResult;
 import startwithco.solutionservice.exception.server.ServerException;
-import startwithco.solutionservice.domain.SolutionEntity;
-import startwithco.solutionservice.repository.SolutionRepository;
-import startwithco.solutionservice.service.mapper.SolutionServiceMapper;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
+import startwithco.solutionservice.solution.repository.SolutionRepository;
+import startwithco.solutionservice.solution.service.mapper.SolutionServiceMapper;
 
-import static startwithco.solutionservice.service.dto.ResponseDto.*;
+import static startwithco.solutionservice.solution.service.dto.ResponseDto.*;
 import static startwithco.solutionservice.topic.ConsumerTopic.TOSS_PAYMENT_APPROVAL_TOPIC;
 
 @Service

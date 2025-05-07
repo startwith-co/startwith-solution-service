@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.LockModeType;
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 
 import java.util.Optional;
 

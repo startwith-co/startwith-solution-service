@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import startwithco.solutionservice.domain.CLOUD;
 import startwithco.solutionservice.domain.FIELD;
 import startwithco.solutionservice.domain.STATUS;
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 import startwithco.solutionservice.repository.SolutionEntityJpaRepository;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

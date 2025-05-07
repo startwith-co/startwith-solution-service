@@ -11,9 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import startwithco.solutionservice.domain.CLOUD;
 import startwithco.solutionservice.domain.FIELD;
 import startwithco.solutionservice.domain.STATUS;
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 import startwithco.solutionservice.repository.SolutionEntityJpaRepository;
-import startwithco.solutionservice.service.SolutionService;
+import startwithco.solutionservice.solution.service.SolutionService;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

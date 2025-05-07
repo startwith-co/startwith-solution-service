@@ -1,4 +1,4 @@
-package startwithco.solutionservice.domain;
+package startwithco.solutionservice.solution.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

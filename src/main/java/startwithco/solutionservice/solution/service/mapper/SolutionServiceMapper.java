@@ -1,12 +1,11 @@
-package startwithco.solutionservice.service.mapper;
+package startwithco.solutionservice.solution.service.mapper;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import startwithco.solutionservice.domain.SolutionEntity;
+import startwithco.solutionservice.solution.domain.SolutionEntity;
 
-import static startwithco.solutionservice.service.dto.ResponseDto.*;
+import static startwithco.solutionservice.solution.service.dto.ResponseDto.*;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface SolutionServiceMapper {
