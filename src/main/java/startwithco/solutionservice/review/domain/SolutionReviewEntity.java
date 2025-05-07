@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import startwithco.solutionservice.solution.domain.SolutionEntity;
+import startwithco.solutionservice.solution.SolutionEntity;
 
 @Entity
 @Table(name = "SOLUTION_REVIEW_ENTITY")
