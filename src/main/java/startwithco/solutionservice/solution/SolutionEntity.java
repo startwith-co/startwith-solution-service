@@ -5,10 +5,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import startwithco.solutionservice.solution.util.INDUSTRY;
-import startwithco.solutionservice.solution.util.RECOMMENDED_COMPANY_SIZE;
-import startwithco.solutionservice.solution.util.SERVICE_TYPE;
-import startwithco.solutionservice.solution.util.TAG;
+import startwithco.solutionservice.base.BaseTimeEntity;
+import startwithco.solutionservice.solution.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -19,7 +17,7 @@ import startwithco.solutionservice.solution.util.TAG;
 @DynamicUpdate
 @Getter
 @SuperBuilder
-public class SolutionEntity {
+public class SolutionEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "solution_seq")
@@ -40,16 +38,17 @@ public class SolutionEntity {
     private String solutionName;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false)
+    private CATEGORY category;
+
     @Column(name = "industry", nullable = false)
-    private INDUSTRY industry;
+    private String industry;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "recommended_company_size", nullable = false)
-    private RECOMMENDED_COMPANY_SIZE recommendedCompanySize;
+    private String recommendedCompanySize;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "tag", nullable = false)
-    private TAG tag;
+    private String tag;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "service_type", nullable = false)
